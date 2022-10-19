@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/posts/{post}', function (Post $post) {
+    return view('post', compact('post'));
+})->name('posts.show');
+
 Route::get('/', function () {
-    return view('welcome');
+    $posts = Post::latest()->get();
+    return view('welcome', compact('posts'));
 });
