@@ -27,7 +27,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::model('post', Post::class);
+        Route::bind('post', function ($value) {
+            if (is_int($value)) {
+                return Post::findOrFail($value);
+            }
+
+            return Post::where('slug', $value)
+                ->where('status', 'published')
+                ->where('date', '<=', now())->firstOrFail();
+        });
 
         $this->configureRateLimiting();
 
