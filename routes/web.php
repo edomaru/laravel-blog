@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/posts/{post}', function (Post $post) {
+Route::get('/posts/{post}', function ($post) {
     return view('post', compact('post'));
 })->name('posts.show');
 
