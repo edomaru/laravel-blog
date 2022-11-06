@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('body');
+            $table->string('status')->default('draft');
+            $table->timestamp('date')->nullable();
             $table->timestamps();
         });
     }
