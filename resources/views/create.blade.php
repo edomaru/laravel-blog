@@ -24,7 +24,7 @@
         </div>
         <div>
             <label for="title">Publish Date</label>
-            <input type="text" name="date" placeholder="dd/mm/yy hh:mm">
+            <input type="text" name="date" placeholder="dd/mm/yyyy hh:mm">
             @error('date')
                 <p>{{ $message }}</p>
             @enderror
