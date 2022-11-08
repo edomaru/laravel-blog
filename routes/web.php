@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/posts/create', function () {
+    return view('create');
+})->name('posts.create');
+
+Route::post('/posts', function (Request $request) {
+    dd($request->all());
+})->name('posts.create');
 
 Route::get('/posts/{post}', function (Post $post) {
     return view('post', compact('post'));
