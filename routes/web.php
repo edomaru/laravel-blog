@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +19,7 @@ Route::get('/posts/create', function () {
     return view('create');
 })->name('posts.create');
 
-Route::post('/posts', function (Request $request) {
+Route::post('/posts', function (PostRequest $request) {
     dd($request->all());
 })->name('posts.create');
 
