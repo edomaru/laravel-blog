@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
@@ -25,6 +24,8 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
+            'title' => 'required|string',
+            'slug' => 'nullable|string',
             'date' => 'date_format:Y-m-d H:i'
         ];
     }
@@ -34,5 +35,13 @@ class PostRequest extends FormRequest
         return [
             'date.date_format' => 'The date format is not valid',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => $this->title && !$this->slug ? $this->string('title')->slug()->value : $this->slug,
+            'date' => $this->date('date')->format('Y-m-d H:i')
+        ]);
     }
 }
